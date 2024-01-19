@@ -13,27 +13,41 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup(
 {
-	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		opts = {
-			transparent = true,
-		},
-	},
-	{ 'rose-pine/neovim', name = 'rose-pine', opts = {
-		transparent = true,
-	}
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {
+            transparent = true,
+        },
+    },
+    { 'rose-pine/neovim', name = 'rose-pine', opts = {
+        transparent = true,
+    },
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" }
+    },
+    {
+        "folke/trouble.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        },
+    },
 },
 {
-	'nvim-telescope/telescope.nvim', tag = '0.1.5',
-	-- or                              , branch = '0.1.x',
-	dependencies = { 'nvim-lua/plenary.nvim' }
+    'nvim-telescope/telescope.nvim', tag = '0.1.5',
+    -- or                              , branch = '0.1.x',
+    dependencies = { 'nvim-lua/plenary.nvim' }
 },
 "tpope/vim-fugitive",
 {
-	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
 },
 "williamboman/mason.nvim",
 "williamboman/mason-lspconfig.nvim",
