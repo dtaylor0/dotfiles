@@ -2,13 +2,8 @@ require("mason").setup()
 require("mason-lspconfig").setup {
 	ensure_installed = {
 		"lua_ls",
-		"rust_analyzer",
 		"tsserver",
 		"pylsp",
-		"gopls",
-		"htmx",
-		"html",
-		"clangd",
 	},
 	automatic_installation = true,
 }
