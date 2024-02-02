@@ -4,13 +4,15 @@ require("mason-lspconfig").setup {
 		"lua_ls",
 		"tsserver",
 		"pylsp",
+		"gopls",
+		"tflint",
 	},
 	automatic_installation = true,
 }
 
 require("mason-lspconfig").setup_handlers {
 	require("lspconfig").lua_ls.setup {
-		diagnostic = {
+		diagnostics = {
 			globals = { 'vim' },
 		},
 	},
