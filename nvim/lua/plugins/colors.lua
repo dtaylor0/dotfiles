@@ -27,22 +27,23 @@ return {
                     floats = "dark", -- style for floating windows
                 },
             })
+            ColorMyPencils('tokyonight')
         end
     },
 
-    {
-        "rose-pine/neovim",
-        name = "rose-pine",
-        config = function()
-            require('rose-pine').setup({
-                disable_background = true,
-            })
+    -- {
+    --     "rose-pine/neovim",
+    --     name = "rose-pine",
+    --     config = function()
+    --         require('rose-pine').setup({
+    --             disable_background = true,
+    --         })
 
-            vim.cmd("colorscheme rose-pine")
+    --         vim.cmd("colorscheme rose-pine")
 
-            ColorMyPencils()
-        end
-    },
+    --         ColorMyPencils()
+    --     end
+    -- },
 
 
 }
