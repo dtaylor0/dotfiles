@@ -29,14 +29,23 @@ return {
                 "lua_ls",
                 "pylsp",
                 "tsserver",
+                "pyright",
             },
             handlers = {
-                function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
+                ["pylsp"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.pylsp.setup {
+                        settings = {
+                            pylsp = {
+                                plugins = {
+                                    pycodestyle = {
+                                        maxLineLength = 100
+                                    }
+                                }
+                            }
+                        }
                     }
                 end,
-
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
@@ -48,6 +57,11 @@ return {
                                 }
                             }
                         }
+                    }
+                end,
+                function(server_name) -- default handler (optional)
+                    require("lspconfig")[server_name].setup {
+                        capabilities = capabilities
                     }
                 end,
             },
