@@ -1,4 +1,4 @@
-export PATH=$PATH:~/go/bin
+export PATH=$PATH:/usr/local/go/bin
 
 test -s ~/.alias && . ~/.alias || true
 

@@ -30,6 +30,7 @@ return {
                 "pylsp",
                 "tsserver",
                 "pyright",
+                "gopls",
             },
             handlers = {
                 ["pylsp"] = function()
