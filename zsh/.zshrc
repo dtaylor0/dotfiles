@@ -1,5 +1,4 @@
-export PATH=/opt/homebrew/bin:$PATH
-export PATH=$PATH:~/go/bin
+export PATH=/opt/homebrew/bin:$PATH:~/go/bin
 alias "vim"=nvim
 
 autoload -Uz compinit && compinit # tab autocomplete menus
