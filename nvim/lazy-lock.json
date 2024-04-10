@@ -24,5 +24,6 @@
   "trouble.nvim": { "branch": "main", "commit": "f1168feada93c0154ede4d1fe9183bf69bac54ea" },
   "undotree": { "branch": "master", "commit": "9dbbf3b7d19dda0d22ceca461818e4739ad8154d" },
   "vim-fugitive": { "branch": "master", "commit": "011cf4fcb93a9649ffc6dcdff56ef948f5d0f7cc" },
+  "vim-jukit": { "branch": "master", "commit": "73214c9a8abc4b6aa7a6266b5bc2ddbf8b3e3c00" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" }
 }
