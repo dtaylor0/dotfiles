@@ -69,4 +69,6 @@ vim.opt.colorcolumn = "80"
 
 vim.g.editorconfig = false
 
+vim.opt.splitright = true
+
 require("lazy").setup("plugins")

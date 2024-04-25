@@ -61,7 +61,6 @@ return {
 		require("mason-lspconfig").setup({
 			ensure_installed = {
 				"cssls",
-				"tsserver",
 				"denols",
 				"gopls",
 			},
@@ -105,7 +104,7 @@ return {
 			},
 		})
 		-- Setup language servers.
-		lspconfig.tsserver.setup({})
+		lspconfig.denols.setup({})
 		lspconfig.rust_analyzer.setup({
 			-- Server-specific settings. See `:help lspconfig-setup`
 			settings = {

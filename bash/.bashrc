@@ -1,4 +1,4 @@
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin:${HOME}/go/bin
 test -s ~/.alias && . ~/.alias || true
 
 alias vim="nvim"
