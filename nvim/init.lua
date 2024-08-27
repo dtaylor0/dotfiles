@@ -811,12 +811,11 @@ require('lazy').setup({
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
 
-      local currHour = os.date '%H'
+      vim.cmd.colorscheme 'catppuccin'
+      --[[ local currHour = os.date '%H'
       if currHour >= '06' and currHour < '18' then
         vim.cmd.colorscheme 'catppuccin-latte'
-      else
-        vim.cmd.colorscheme 'catppuccin'
-      end
+      end ]]
       -- You can configure highlights by doing something like:
       -- vim.cmd.hi 'Comment gui=none'
     end,
@@ -864,10 +863,10 @@ require('lazy').setup({
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
       -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
+      --[[ ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
         return '%2l:%-2v'
-      end
+      end ]]
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim

@@ -2,6 +2,7 @@ export PATH=$PATH:/usr/local/go/bin:${HOME}/go/bin
 test -s ~/.alias && . ~/.alias || true
 
 alias vim="nvim"
+alias "l"='ls -la'
 export GCM_CREDENTIAL_STORE=cache
 
 CYAN='\e[1;36m'
