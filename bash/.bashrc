@@ -1,3 +1,4 @@
+source /usr/lib/git-core/git-sh-prompt
 export PATH=$PATH:/usr/local/go/bin:${HOME}/go/bin
 test -s ~/.alias && . ~/.alias || true
 
