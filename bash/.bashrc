@@ -3,7 +3,7 @@ export PATH=$PATH:/usr/local/go/bin:${HOME}/go/bin
 test -s ~/.alias && . ~/.alias || true
 
 alias vim="nvim"
-alias "l"='ls -la'
+alias "l"='ls --color=auto -F'
 export GCM_CREDENTIAL_STORE=cache
 
 CYAN='\e[1;36m'
@@ -35,3 +35,23 @@ unset __conda_setup
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$PATH:/opt/nvim-linux64/bin"
+
+# fnm
+FNM_PATH="/home/drew/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env --shell bash`"
+fi
+
+# asdf
+. "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/completions/asdf.bash"
+
+# Python
+alias python=python3.12
+alias python3=python3.12
+alias pip=pip3.12
+alias pip3=pip3.12
+export PATH="$PATH:$HOME/.local/bin/"
