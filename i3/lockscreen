@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+magick $1 -resize 2560x1440! RGB:- | i3lock --raw 2560x1440:rgb --image /dev/stdin -c 000000
+xset dpms force off

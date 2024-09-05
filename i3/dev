@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# config file
+rm -rf ~/.config/i3/config
+ln -s "$(pwd)/config" ~/.config/i3/config
+
+
+# lock file
+rm -rf ~/.config/i3/lockscreen
+ln -s "$(pwd)/lockscreen" ~/.config/i3/lockscreen
