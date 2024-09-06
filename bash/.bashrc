@@ -6,11 +6,11 @@ alias vim="nvim"
 alias "l"='ls --color=auto -F'
 export GCM_CREDENTIAL_STORE=cache
 
-CYAN='\e[1;36m'
-BLUE='\e[1;34m'
-RED='\e[1;31m'
-RESET='\e[00m'
-export PS1="$CYAN\W "'$(__git_ps1 "${BLUE}git:(${RED}%s${BLUE}) ")'"${RESET}→ "
+CYAN=$(tput setaf 6)
+BLUE=$(tput setaf 4)
+RED=$(tput setaf 1)
+RESET=$(tput sgr0)
+export PS1='\[$CYAN\]\W $(__git_ps1 "\[$BLUE\]git:(\[$RED\]%s\[$BLUE\]) ")\[$RESET\]⏩ '
 . "$HOME/.cargo/env"
 
 # bun
