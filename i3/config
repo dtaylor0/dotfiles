@@ -40,7 +40,7 @@ exec_always --no-startup-id mpd &
 exec_always --no-startup-id dunst &
 
 # set wallpaper with feh
-set $bgimage "/home/drew/.config/i3/space.jpg"
+set $bgimage "/home/drew/.config/i3/space.png"
 exec_always feh --no-fehbg --bg-scale $bgimage
 
 # launch polybar
