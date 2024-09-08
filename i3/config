@@ -14,7 +14,7 @@
 # is used in the bar {} block below.
 
 # set mod
-set $mod Mod4
+set $mod Mod1
 
 # title style
 # for_window [class=".*"] title_format " %title"

@@ -8,7 +8,7 @@ size = 18
 
 [font.normal]
 # family = "IosevkaNerdFont"
-family = "NotoMono"
+family = "DejaVuSansMono"
 
 [window]
 decorations = "Full"

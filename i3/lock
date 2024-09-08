@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+xset dpms 600 600 600
+
+betterlockscreen --lock
+
+xset dpms 0 0 0

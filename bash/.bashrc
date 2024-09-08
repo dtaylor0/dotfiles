@@ -3,7 +3,7 @@ export PATH=$PATH:/usr/local/go/bin:${HOME}/go/bin
 test -s ~/.alias && . ~/.alias || true
 
 alias vim="nvim"
-alias "l"='ls --color=auto -F'
+alias "l"='ls --color=auto -LF'
 export GCM_CREDENTIAL_STORE=cache
 
 export TERM=alacritty
