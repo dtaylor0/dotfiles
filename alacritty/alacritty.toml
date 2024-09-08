@@ -7,9 +7,10 @@ import = [
 size = 18
 
 [font.normal]
-family = "NotoMono Nerd Font"
+# family = "IosevkaNerdFont"
+family = "NotoMono"
 
 [window]
 decorations = "Full"
 startup_mode = "Maximized"
-opacity = 0.9
+opacity = 0.75

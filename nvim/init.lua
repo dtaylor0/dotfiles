@@ -573,11 +573,6 @@ require('lazy').setup({
         -- pyright = {},
         rust_analyzer = {},
         pylsp = {},
-        sqlls = {
-          root_dir = function()
-            return vim.loop.cwd()
-          end,
-        },
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -620,7 +615,6 @@ require('lazy').setup({
         'black',
         'isort',
         'markdownlint',
-        'sqlls',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -795,8 +789,6 @@ require('lazy').setup({
     end,
   },
 
-  { 'folke/tokyonight.nvim', priority = 1000 },
-  { 'morhetz/gruvbox', priority = 1000 },
   { 'rose-pine/neovim', priority = 1000 },
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
@@ -913,20 +905,54 @@ require('lazy').setup({
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
   },
-  {
-    'vhyrro/luarocks.nvim',
-    priority = 1001, -- this plugin needs to run before anything else
-    opts = {
-      rocks = { 'magick' },
-    },
-  },
-  {
-    '3rd/image.nvim',
-    dependencies = { 'luarocks.nvim' },
-    config = function()
-      -- ...
-    end,
-  },
+  -- {
+  --   'vhyrro/luarocks.nvim',
+  --   priority = 1001, -- this plugin needs to run before anything else
+  --   opts = {
+  --     rocks = { 'magick' },
+  --   },
+  -- },
+  -- {
+  --   '3rd/image.nvim',
+  --   dependencies = { 'luarocks.nvim' },
+  --   config = function()
+  --     -- default config
+  --     require('image').setup {
+  --       backend = 'ueberzug',
+  --       integrations = {
+  --         markdown = {
+  --           enabled = true,
+  --           clear_in_insert_mode = false,
+  --           download_remote_images = true,
+  --           only_render_image_at_cursor = false,
+  --           filetypes = { 'markdown', 'vimwiki' }, -- markdown extensions (ie. quarto) can go here
+  --         },
+  --         neorg = {
+  --           enabled = true,
+  --           clear_in_insert_mode = false,
+  --           download_remote_images = true,
+  --           only_render_image_at_cursor = false,
+  --           filetypes = { 'norg' },
+  --         },
+  --         html = {
+  --           enabled = false,
+  --         },
+  --         css = {
+  --           enabled = false,
+  --         },
+  --       },
+  --       max_width = nil,
+  --       max_height = nil,
+  --       max_width_window_percentage = nil,
+  --       max_height_window_percentage = 50,
+  --       window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
+  --       window_overlap_clear_ft_ignore = { 'cmp_menu', 'cmp_docs', '' },
+  --       editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
+  --       tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+  --       hijack_file_patterns = { '*.png', '*.jpg', '*.jpeg', '*.gif', '*.webp', '*.avif' }, -- render image files as images when opened
+  --     }
+  --   end,
+  -- },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can justlet letdownload them and

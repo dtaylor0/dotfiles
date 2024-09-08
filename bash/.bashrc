@@ -6,6 +6,7 @@ alias vim="nvim"
 alias "l"='ls --color=auto -F'
 export GCM_CREDENTIAL_STORE=cache
 
+export TERM=alacritty
 CYAN=$(tput setaf 6)
 BLUE=$(tput setaf 4)
 RED=$(tput setaf 1)
@@ -50,8 +51,10 @@ fi
 . "$HOME/.asdf/completions/asdf.bash"
 
 # Python
-alias python=python3.12
-alias python3=python3.12
-alias pip=pip3.12
-alias pip3=pip3.12
+# alias python=python3.12
+# alias python3=python3.12
+# alias pip=pip3.12
+# alias pip3=pip3.12
 export PATH="$PATH:$HOME/.local/bin/"
+
+export BROWSER=zen

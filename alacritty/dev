@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-rm -rf ~/.config/alacritty/alacritty.toml
-ln -s "$(pwd)/alacritty.toml" ~/.config/alacritty/alacritty.toml
+rm -rf ~/.config/alacritty
+ln -s $(pwd) ~/.config/alacritty
 
