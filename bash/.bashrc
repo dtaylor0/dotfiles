@@ -11,7 +11,7 @@ CYAN=$(tput setaf 6)
 BLUE=$(tput setaf 4)
 RED=$(tput setaf 1)
 RESET=$(tput sgr0)
-export PS1='\[$CYAN\]\W $(__git_ps1 "\[$BLUE\]git:(\[$RED\]%s\[$BLUE\]) ")\[$RESET\]⏩ '
+export PS1='\[$CYAN\]\W $(__git_ps1 "\[$BLUE\]git:(\[$RED\]%s\[$BLUE\]) ")\[$RESET\]⊙ '
 . "$HOME/.cargo/env"
 
 # bun
