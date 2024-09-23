@@ -13,4 +13,4 @@ family = "Iosevka Nerd Font"
 [window]
 decorations = "Full"
 startup_mode = "Maximized"
-opacity = 0.75
+# opacity = 0.75
