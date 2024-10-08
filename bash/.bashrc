@@ -1,4 +1,6 @@
-source /usr/lib/git-core/git-sh-prompt
+if [ -f /usr/lib/git-core/git-sh-prompt ]; then
+	source /usr/lib/git-core/git-sh-prompt
+fi
 export PATH=$PATH:/usr/local/go/bin:${HOME}/go/bin
 test -s ~/.alias && . ~/.alias || true
 
@@ -13,16 +15,17 @@ RED=$(tput setaf 1)
 RESET=$(tput sgr0)
 BOLD=$(tput bold)
 export PS1='\[$CYAN\]\W $(__git_ps1 "\[$BLUE\]git:(\[$RED\]%s\[$BLUE\]) ")\[$RESET\]⨯ '
-. "$HOME/.cargo/env"
+
+# rust
+if [ -f "$HOME/.cargo/env" ]; then
+	. "$HOME/.cargo/env"
+fi
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
+#neovim
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
 # fnm
@@ -38,11 +41,11 @@ if [ -f "$HOME/.asdf/asdf.sh" ]; then
 	. "$HOME/.asdf/completions/asdf.bash"
 fi
 
+# home local bin
 export PATH="$PATH:$HOME/.local/bin/"
 
-# add Pulumi to the PATH
+# pulumi
 export PATH="$PATH:$HOME/.pulumi/bin"
-. "$HOME/.deno/env"
 
 # sensitive env variables
 if [ -f "$HOME/.bashenv" ]; then
