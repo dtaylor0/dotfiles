@@ -163,6 +163,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- ====MY OPTS====
 vim.opt.relativenumber = true
+vim.opt.termguicolors = true
 -- ====MY OPTS====
 
 -- Diagnostic keymaps
@@ -356,11 +357,11 @@ require('lazy').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          file_ignore_patterns = {
+            'node_modules',
+          },
+        },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
@@ -816,6 +817,13 @@ require('lazy').setup({
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
+  {
+    'norcalli/nvim-colorizer.lua',
+    init = function()
+      require('colorizer').setup()
+    end,
+  },
+
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     version = false,
@@ -878,9 +886,26 @@ require('lazy').setup({
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
+        additional_vim_regex_highlighting = {
+          'ruby',
+          'typescript',
+          'javascript',
+          'typescriptreact',
+          'javascriptreact',
+          'python',
+        },
       },
-      indent = { enable = true, disable = { 'ruby', 'typescript', 'javascript', 'python' } },
+      indent = {
+        enable = true,
+        disable = {
+          'ruby',
+          'typescript',
+          'javascript',
+          'typescriptreact',
+          'javascriptreact',
+          'python',
+        },
+      },
     },
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
@@ -904,6 +929,12 @@ require('lazy').setup({
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+  },
+  {
+    'dmmulroy/ts-error-translator.nvim',
+    init = function()
+      require('ts-error-translator').setup()
+    end,
   },
   -- {
   --   'vhyrro/luarocks.nvim',
@@ -964,7 +995,7 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.indent_line',
+  -- require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
