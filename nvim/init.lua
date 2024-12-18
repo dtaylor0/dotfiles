@@ -571,9 +571,9 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         gopls = {},
-        -- pyright = {},
+        pyright = {},
         rust_analyzer = {},
-        pylsp = {},
+        -- pylsp = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -674,6 +674,7 @@ require('lazy').setup({
         html = { 'prettier' },
         css = { 'prettier' },
         json = { 'prettier' },
+        jsonc = { 'prettier' },
         sql = { 'sqlfmt' },
       },
     },
@@ -789,29 +790,27 @@ require('lazy').setup({
       }
     end,
   },
-
-  { 'rose-pine/neovim', priority = 1000 },
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  {
+    'rose-pine/neovim',
+    priority = 1000,
+    init = function()
+      require('rose-pine').setup {
+        styles = {
+          bold = false,
+          italic = false,
+          transparency = true,
+        },
+      }
+      vim.cmd.colorscheme 'rose-pine'
+    end,
+  },
+  {
     -- 'catppuccin/nvim',
     'sainnhe/gruvbox-material',
     priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-
-      vim.cmd.colorscheme 'gruvbox-material'
-      --[[ local currHour = os.date '%H'
-      if currHour >= '06' and currHour < '18' then
-        vim.cmd.colorscheme 'catppuccin-latte'
-      end ]]
-      -- You can configure highlights by doing something like:
-      -- vim.cmd.hi 'Comment gui=none'
-    end,
+    -- init = function()
+    -- vim.cmd.colorscheme 'gruvbox-material'
+    -- end,
   },
 
   -- Highlight todo, notes, etc in comments
