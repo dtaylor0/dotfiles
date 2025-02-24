@@ -36,13 +36,13 @@ fi
 
 # bun
 BUN_INSTALL="$HOME/.bun/bin"
-if [ -d $BUN_INSTALL ] then
+if [ -d $BUN_INSTALL ]; then
 	export PATH=$BUN_INSTALL:$PATH
 fi
 
 #neovim
 NVIM_PATH="/opt/nvim-linux64/bin"
-if [ -d $NVIM_PATH ] then
+if [ -d $NVIM_PATH ]; then
 	export PATH="$PATH:/opt/nvim-linux64/bin"
 fi
 
