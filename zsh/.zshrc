@@ -10,5 +10,14 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 zstyle ':vcs_info:git:*' formats "%F{blue}git:(%f%F{red}%b%f%F{blue})%f "
-PROMPT='%B%F{cyan}%1d%f ${vcs_info_msg_0_}%b%{$reset_color%}⊙ '
-# PROMPT='%B%F{cyan}%1d%f %F{red}${vcs_info_msg_0_}%f%b%{$reset_color%}→ '
+PROMPT='%B%F{cyan}%1d%f ${vcs_info_msg_0_}%b%{$reset_color%}⨯ '
+
+source $HOME/.zsh.env
+
+. "$HOME/.local/bin/env"
+
+# bun completions
+[ -s "/Users/drewtaylor/.bun/_bun" ] && source "/Users/drewtaylor/.bun/_bun"
+
+# bun executables
+export PATH="$HOME/.bun/bin:$PATH"
