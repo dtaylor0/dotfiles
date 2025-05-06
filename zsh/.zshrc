@@ -1,6 +1,11 @@
 export PATH=/opt/homebrew/bin:$PATH:~/go/bin:~/.cargo/bin
 alias "vim"=nvim
 alias "l"='ls --color=auto -aLF'
+alias "gs"="git status"
+alias "ga"="git add"
+alias "gc"="git commit"
+alias "gp"="git push"
+alias "gl"="git log"
 
 autoload -Uz compinit && compinit # tab autocomplete menus
 
