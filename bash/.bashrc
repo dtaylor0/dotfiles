@@ -17,6 +17,11 @@ test -s ~/.alias && . ~/.alias || true
 # basic aliases
 alias vim="nvim"
 alias "l"='ls --color=auto -LF'
+alias "gs"="git status"
+alias "ga"="git add"
+alias "gc"="git commit"
+alias "gp"="git push"
+alias "gl"="git log"
 
 # (linux) use cache for git auth
 export GCM_CREDENTIAL_STORE=cache

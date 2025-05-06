@@ -21,3 +21,16 @@ source $HOME/.zsh.env
 
 # bun executables
 export PATH="$HOME/.bun/bin:$PATH"
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/Users/drewtaylor/.opam/opam-init/init.zsh' ]] || source '/Users/drewtaylor/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
