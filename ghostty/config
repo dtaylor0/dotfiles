@@ -1,5 +1,5 @@
-font-family = "Iosevka Nerd Font Mono"
-font-size = 32
-theme = rose-pine
+font-family = "UbuntuMono Nerd Font"
+font-size = 22
+theme = dark:rose-pine,light:rose-pine-dawn
 window-height = 999999
 window-width = 999999

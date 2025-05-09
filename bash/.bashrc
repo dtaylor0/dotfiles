@@ -2,6 +2,10 @@ if [ -f /usr/lib/git-core/git-sh-prompt ]; then
 	source /usr/lib/git-core/git-sh-prompt
 fi
 
+if [ -f /usr/share/git/git-prompt.sh ]; then
+	source /usr/share/git/git-prompt.sh
+fi
+
 # go
 GO_PATH_LOCAL=${HOME}/go/bin
 GO_PATH_GLOBAL=/usr/local/go/bin
@@ -71,3 +75,18 @@ export PATH="$PATH:$HOME/.local/bin/"
 if [ -f "$HOME/.bashenv" ]; then
 	. "$HOME/.bashenv"
 fi
+
+# fnm
+FNM_PATH="/home/drewt/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
