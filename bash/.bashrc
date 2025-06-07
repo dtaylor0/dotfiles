@@ -90,3 +90,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/drewtaylor/.lmstudio/bin"
+# End of LM Studio CLI section
+
