@@ -44,7 +44,7 @@ set $bgimage "/home/drew/.config/i3/space.png"
 exec_always feh --no-fehbg --bg-scale $bgimage
 
 # launch polybar
-exec_always --no-startup-id killall -q
+exec_always --no-startup-id killall -q polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # start i3 components

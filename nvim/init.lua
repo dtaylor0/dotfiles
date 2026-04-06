@@ -139,7 +139,7 @@ require("rose-pine").setup({
 })
 vim.cmd.colorscheme("rose-pine")
 
-vim.keymap.set("n", "<leader>o", ":update<CR> :source<CR>")
+vim.keymap.set("n", "<leader>o", ":update<CR> :source ~/.config/nvim/init.lua<CR>")
 vim.keymap.set("n", "<leader>w", ":write<CR>")
 vim.keymap.set("n", "<leader>q", ":quit<CR>")
 vim.keymap.set("n", "<leader>sf", ":Pick files<CR>")

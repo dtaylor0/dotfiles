@@ -76,21 +76,9 @@ if [ -f "$HOME/.bashenv" ]; then
 	. "$HOME/.bashenv"
 fi
 
-# fnm
-FNM_PATH="/home/drewt/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env`"
-fi
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/drewtaylor/.lmstudio/bin"
-# End of LM Studio CLI section
+command -v ng &>/dev/null && source <(ng completion script)
 
