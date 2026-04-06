@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+rm -rf ~/.gitconfig
+ln -s "$(pwd)/.gitconfig" ~/.gitconfig

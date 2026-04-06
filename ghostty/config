@@ -1,5 +1,4 @@
-font-family = "UbuntuMono Nerd Font"
-font-size = 22
-theme = dark:rose-pine,light:rose-pine-dawn
-window-height = 999999
-window-width = 999999
+font-family = "UbuntuMono Nerd Font Mono"
+font-size = 18
+theme = Rose Pine
+background-opacity = 0.7

@@ -1,0 +1,96 @@
+# Command definitions
+.define yabai_focus : yabai -m window --focus {{1}} || yabai -m display --focus {{1}}
+.define yabai_swap : ~/.config/yabai/scripts/smart-swap.sh {{1}}
+.define toggle_app : open -a "{{1}}" || osascript -e 'tell app "{{1}}" to quit'
+.define resize_window : yabai -m window --resize {{1}}:{{2}}:{{3}}
+.define toggle_scratchpad : yabai -m window --toggle {{1}} || open -a "{{2}}"
+
+# Focus windows
+alt - h : @yabai_focus("west")
+alt - j : @yabai_focus("south")
+alt - k : @yabai_focus("north")
+alt - l : @yabai_focus("east")
+
+# Move/swap windows
+alt + shift - h : @yabai_swap("west")
+alt + shift - j : @yabai_swap("south")
+alt + shift - k : @yabai_swap("north")
+alt + shift - l : @yabai_swap("east")
+
+# Resize windows
+alt + ctrl - h : @resize_window("left", "-20", "0")
+alt + ctrl - l : @resize_window("right", "20", "0")
+
+# Switch spaces (auto-creates if needed)
+alt - 1 : ~/.config/yabai/scripts/space-focus.sh 1
+alt - 2 : ~/.config/yabai/scripts/space-focus.sh 2
+alt - 3 : ~/.config/yabai/scripts/space-focus.sh 3
+alt - 4 : ~/.config/yabai/scripts/space-focus.sh 4
+alt - 5 : ~/.config/yabai/scripts/space-focus.sh 5
+alt - 6 : ~/.config/yabai/scripts/space-focus.sh 6
+alt - 7 : ~/.config/yabai/scripts/space-focus.sh 7
+alt - 8 : ~/.config/yabai/scripts/space-focus.sh 8
+alt - 9 : ~/.config/yabai/scripts/space-focus.sh 9
+
+# Move window to space (auto-creates if needed)
+alt + shift - 1 : ~/.config/yabai/scripts/space-focus.sh 1 move
+alt + shift - 2 : ~/.config/yabai/scripts/space-focus.sh 2 move
+alt + shift - 3 : ~/.config/yabai/scripts/space-focus.sh 3 move
+alt + shift - 4 : ~/.config/yabai/scripts/space-focus.sh 4 move
+alt + shift - 5 : ~/.config/yabai/scripts/space-focus.sh 5 move
+alt + shift - 6 : ~/.config/yabai/scripts/space-focus.sh 6 move
+alt + shift - 7 : ~/.config/yabai/scripts/space-focus.sh 7 move
+alt + shift - 8 : ~/.config/yabai/scripts/space-focus.sh 8 move
+alt + shift - 9 : ~/.config/yabai/scripts/space-focus.sh 9 move
+
+# App toggles
+alt - t : @toggle_app("Ghostty")
+alt - f : @toggle_app("Finder")
+
+# Window management mode with anybar visual indicator
+:: winmode @ : echo -n "red" | nc -4u -w0 localhost 1738
+:: default : echo -n "hollow" | nc -4u -w0 localhost 1738
+
+# Enter window mode with meh + w (shift + alt + ctrl + w)
+meh - w ; winmode : osascript -e 'display notification "Window mode active" with title "skhd"'
+winmode < escape ; default : osascript -e 'display notification "Normal mode" with title "skhd"'
+winmode < meh - w ; default : osascript -e 'display notification "Normal mode" with title "skhd"'
+
+# Focus operations - basic hjkl for focus
+winmode < h : yabai -m window --focus west || yabai -m display --focus west
+winmode < j : yabai -m window --focus south || yabai -m display --focus south
+winmode < k : yabai -m window --focus north || yabai -m display --focus north
+winmode < l : yabai -m window --focus east || yabai -m display --focus east
+
+# Move operations - shift + hjkl for moving
+winmode < shift - h : yabai -m window --move rel:-80:0
+winmode < shift - j : yabai -m window --move rel:0:80
+winmode < shift - k : yabai -m window --move rel:0:-80
+winmode < shift - l : yabai -m window --move rel:80:0
+
+# Warp operations - alt + shift + hjkl for warping
+winmode < alt + shift - h : yabai -m window --warp west
+winmode < alt + shift - j : yabai -m window --warp south
+winmode < alt + shift - k : yabai -m window --warp north
+winmode < alt + shift - l : yabai -m window --warp east
+
+# Stack operations - ctrl + shift + hjkl for stacking
+winmode < ctrl + shift - h : yabai -m window --stack west
+winmode < ctrl + shift - j : yabai -m window --stack south
+winmode < ctrl + shift - k : yabai -m window --stack north
+winmode < ctrl + shift - l : yabai -m window --stack east
+
+# Stack management shortcuts
+winmode < s : yabai -m window --insert stack
+winmode < u : yabai -m window --toggle float; yabai -m window --toggle float
+winmode < n : yabai -m window --focus stack.next
+winmode < p : yabai -m window --focus stack.prev
+
+# Resize submode
+winmode < r ; resize
+:: resize @ : echo -n "orange" | nc -4u -w0 localhost 1738
+resize < h : yabai -m window --resize left:-20:0
+resize < j : yabai -m window --resize bottom:0:20
+resize < k : yabai -m window --resize top:0:-20
+resize < l : yabai -m window --resize right:20:0
+resize < escape ; winmode

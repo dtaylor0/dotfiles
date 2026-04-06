@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+rm -rf ~/.yabairc
+ln -s "$(pwd)/.yabairc" ~/.yabairc
+
+mkdir -p ~/.config/yabai/scripts
+rm -rf ~/.config/yabai/scripts/smart-swap.sh
+rm -rf ~/.config/yabai/scripts/space-focus.sh
+ln -s "$(pwd)/scripts/smart-swap.sh" ~/.config/yabai/scripts/smart-swap.sh
+ln -s "$(pwd)/scripts/space-focus.sh" ~/.config/yabai/scripts/space-focus.sh

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+rm -rf ~/.skhdrc
+ln -s "$(pwd)/.skhdrc" ~/.skhdrc
