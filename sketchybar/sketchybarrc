@@ -1,0 +1,200 @@
+#!/bin/bash
+
+# Rose Pine palette
+ROSE_BASE="0xff191724"
+ROSE_SURFACE="0xff1f1d2e"
+ROSE_OVERLAY="0xff26233a"
+ROSE_MUTED="0xff6e6a86"
+ROSE_SUBTLE="0xff908caa"
+ROSE_TEXT="0xffe0def4"
+ROSE_LOVE="0xffeb6f92"
+ROSE_GOLD="0xfff6c177"
+ROSE_ROSE="0xffebbcba"
+ROSE_PINE="0xff31748f"
+ROSE_FOAM="0xff9ccfd8"
+ROSE_IRIS="0xffc4a7e7"
+
+FONT="Atkynson Mono Nerd Font"
+PADDING=6
+
+# Bar appearance
+sketchybar --bar \
+  height=32 \
+  color=$ROSE_BASE \
+  border_color=$ROSE_OVERLAY \
+  border_width=0 \
+  shadow=off \
+  position=top \
+  sticky=on \
+  padding_left=8 \
+  padding_right=8 \
+  y_offset=0 \
+  margin=0 \
+  corner_radius=0 \
+  topmost=window
+
+# Defaults
+sketchybar --default \
+  icon.font="$FONT:Bold:14.0" \
+  icon.color=$ROSE_TEXT \
+  icon.padding_left=$PADDING \
+  icon.padding_right=4 \
+  label.font="$FONT:Regular:13.0" \
+  label.color=$ROSE_TEXT \
+  label.padding_left=4 \
+  label.padding_right=$PADDING \
+  background.color=$ROSE_SURFACE \
+  background.corner_radius=4 \
+  background.height=24 \
+  background.padding_left=4 \
+  background.padding_right=4
+
+# --- LEFT SIDE ---
+
+# Spaces
+SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9")
+for i in "${!SPACE_ICONS[@]}"; do
+  sid=$((i + 1))
+  sketchybar --add space space.$sid left \
+    --set space.$sid \
+      associated_space=$sid \
+      icon="${SPACE_ICONS[$i]}" \
+      icon.font="$FONT:Bold:13.0" \
+      icon.color=$ROSE_MUTED \
+      icon.highlight_color=$ROSE_IRIS \
+      icon.padding_left=8 \
+      icon.padding_right=8 \
+      label.drawing=off \
+      width=23 \
+      background.drawing=on \
+      background.color=$ROSE_BASE \
+      background.corner_radius=4 \
+      background.height=24 \
+      script="$HOME/.config/sketchybar/plugins/space.sh" \
+      click_script="yabai -m space --focus $sid" \
+    --subscribe space.$sid space_change
+done
+
+# Separator
+sketchybar --add item separator left \
+  --set separator \
+    icon="│" \
+    icon.color=$ROSE_OVERLAY \
+    icon.font="$FONT:Regular:16.0" \
+    icon.padding_left=4 \
+    label.drawing=off \
+    background.drawing=off
+
+# Focused window title
+sketchybar --add item front_app left \
+  --set front_app \
+    icon.drawing=off \
+    label.font="$FONT:Bold:13.0" \
+    label.color=$ROSE_ROSE \
+    background.drawing=off \
+    script="$HOME/.config/sketchybar/plugins/front_app.sh" \
+  --subscribe front_app front_app_switched
+
+# Now playing (hidden when nothing playing)
+sketchybar --add item media left \
+  --set media \
+    icon="󰎆" \
+    icon.color=$ROSE_GOLD \
+    label.color=$ROSE_SUBTLE \
+    drawing=off \
+    update_freq=1 \
+    script="$HOME/.config/sketchybar/plugins/media.sh" \
+    click_script="open -a Music" \
+    background.drawing=off
+
+# --- RIGHT SIDE ---
+
+# Clock
+sketchybar --add item clock right \
+  --set clock \
+    icon="󰥔" \
+    icon.color=$ROSE_FOAM \
+    label.color=$ROSE_TEXT \
+    update_freq=30 \
+    script="$HOME/.config/sketchybar/plugins/clock.sh" \
+    click_script="open -a Calendar" \
+    background.drawing=on
+
+# Battery
+sketchybar --add item battery right \
+  --set battery \
+    icon.color=$ROSE_GOLD \
+    label.color=$ROSE_TEXT \
+    update_freq=60 \
+    script="$HOME/.config/sketchybar/plugins/battery.sh" \
+    click_script="open x-apple.systempreferences:com.apple.Battery-Settings.extension" \
+    background.drawing=on \
+  --subscribe battery system_woke power_source_change
+
+# WiFi
+sketchybar --add item wifi right \
+  --set wifi \
+    icon="󰖩" \
+    icon.color=$ROSE_PINE \
+    label.color=$ROSE_TEXT \
+    update_freq=30 \
+    script="$HOME/.config/sketchybar/plugins/wifi.sh" \
+    click_script="open x-apple.systempreferences:com.apple.Network-Settings.extension" \
+    background.drawing=on
+
+# Volume
+sketchybar --add item volume right \
+  --set volume \
+    icon.color=$ROSE_IRIS \
+    label.color=$ROSE_TEXT \
+    script="$HOME/.config/sketchybar/plugins/volume.sh" \
+    click_script="osascript -e 'set volume output muted (not (output muted of (get volume settings)))' && NAME=volume $HOME/.config/sketchybar/plugins/volume.sh" \
+    background.drawing=on \
+  --subscribe volume volume_change
+
+# CPU
+sketchybar --add item cpu right \
+  --set cpu \
+    icon="󰘚" \
+    icon.color=$ROSE_LOVE \
+    label.color=$ROSE_TEXT \
+    update_freq=5 \
+    script="$HOME/.config/sketchybar/plugins/cpu.sh" \
+    click_script="open -a 'Activity Monitor'" \
+    background.drawing=on
+
+# RAM
+sketchybar --add item ram right \
+  --set ram \
+    icon="󰍛" \
+    icon.color=$ROSE_ROSE \
+    label.color=$ROSE_TEXT \
+    update_freq=5 \
+    script="$HOME/.config/sketchybar/plugins/ram.sh" \
+    click_script="open -a 'Activity Monitor'" \
+    background.drawing=on
+
+# Mic
+sketchybar --add item mic right \
+  --set mic \
+    icon="󰍬" \
+    icon.color=$ROSE_FOAM \
+    label.color=$ROSE_TEXT \
+    script="$HOME/.config/sketchybar/plugins/mic.sh" \
+    click_script="osascript -e 'if (input volume of (get volume settings)) is 0 then' -e 'set volume input volume 75' -e 'else' -e 'set volume input volume 0' -e 'end if' && NAME=mic $HOME/.config/sketchybar/plugins/mic.sh" \
+    background.drawing=on \
+  --subscribe mic volume_change
+
+# Disk
+sketchybar --add item disk right \
+  --set disk \
+    icon="󰋊" \
+    icon.color=$ROSE_MUTED \
+    label.color=$ROSE_TEXT \
+    update_freq=300 \
+    script="$HOME/.config/sketchybar/plugins/disk.sh" \
+    click_script="open x-apple.systempreferences:com.apple.settings.Storage" \
+    background.drawing=on
+
+# Finalize
+sketchybar --update
