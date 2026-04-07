@@ -33,6 +33,26 @@ yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Karabiner" manage=off
 yabai -m rule --add app="^Archive Utility$" manage=off
 yabai -m rule --add app="^Surfshark$" manage=off
+yabai -m rule --add app="^Music$" manage=off
+yabai -m rule --add app="^Calendar$" manage=off
+yabai -m rule --add app="^Contacts$" manage=off
+yabai -m rule --add app="^Messages$" manage=off
+yabai -m rule --add app="^FaceTime$" manage=off
+yabai -m rule --add app="^Maps$" manage=off
+yabai -m rule --add app="^Weather$" manage=off
+yabai -m rule --add app="^App Store$" manage=off
+yabai -m rule --add app="^Photos$" manage=off
+yabai -m rule --add app="^Preview$" manage=off
+yabai -m rule --add app="^QuickTime Player$" manage=off
+yabai -m rule --add app="^Font Book$" manage=off
+yabai -m rule --add app="^Passwords$" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
+yabai -m rule --add app="^Docker$" manage=off
+yabai -m rule --add app="^Raycast$" manage=off
+yabai -m rule --add app="^Steam$" manage=off
+yabai -m rule --add app="^Telegram$" manage=off
+yabai -m rule --add app="^iPhone Mirroring$" manage=off
+yabai -m rule --add app="^FindMy$" manage=off
 
 # Fix Ghostty tabs: macOS native tabs appear as separate windows to yabai
 yabai -m signal --add app="^Ghostty$" event=window_created action="yabai -m space --layout bsp"
