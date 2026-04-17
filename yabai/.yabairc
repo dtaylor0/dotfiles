@@ -9,12 +9,12 @@ yabai -m config layout bsp
 yabai -m config window_placement second_child
 
 # Padding and gaps
-yabai -m config external_bar all:32:0
-yabai -m config top_padding    8
-yabai -m config bottom_padding 8
-yabai -m config left_padding   8
-yabai -m config right_padding  8
-yabai -m config window_gap     8
+# yabai -m config external_bar all:32:0
+yabai -m config top_padding    2
+yabai -m config bottom_padding 2
+yabai -m config left_padding   2
+yabai -m config right_padding  2
+yabai -m config window_gap     2
 
 # Mouse
 yabai -m config mouse_follows_focus off
@@ -53,6 +53,8 @@ yabai -m rule --add app="^Steam$" manage=off
 yabai -m rule --add app="^Telegram$" manage=off
 yabai -m rule --add app="^iPhone Mirroring$" manage=off
 yabai -m rule --add app="^FindMy$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+# yabai -m rule --add app="^YouTube$" manage=off
 
 # Fix Ghostty tabs: macOS native tabs appear as separate windows to yabai
 yabai -m signal --add app="^Ghostty$" event=window_created action="yabai -m space --layout bsp"
@@ -61,6 +63,8 @@ yabai -m signal --add app="^Ghostty$" event=window_destroyed action="yabai -m sp
 yabai -m rule --add app="^Ghostty$" space=1
 yabai -m rule --add app="^Google Chrome$" space=2
 
+# Apply rules to windows that already exist at startup
+yabai -m rule --apply
 
 # keep at end
-borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=4.0 &
+borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=2.0 &

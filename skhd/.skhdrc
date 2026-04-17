@@ -48,10 +48,10 @@ alt - t : @toggle_app("Ghostty")
 alt - f : @toggle_app("Finder")
 
 # Chrome vertical tabs toggle (cmd+b)
-cmd - b [
-    "Google Chrome" : ~/.config/yabai/scripts/chrome-toggle-vertical-tabs.sh
-    *               ~
-]
+# cmd - b [
+#     "Google Chrome" : ~/.config/yabai/scripts/chrome-toggle-vertical-tabs.sh
+#     *               ~
+# ]
 
 # Window management mode with anybar visual indicator
 :: winmode @ : echo -n "red" | nc -4u -w0 localhost 1738

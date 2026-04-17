@@ -10,6 +10,14 @@ vim.o.undofile = true
 vim.g.mapleader = " "
 vim.o.winborder = "rounded"
 -- vim.cmd("set completeopt=menuone,noselect,fuzzy,nosort")
+vim.o.background = vim.fn
+	.system({
+		"defaults",
+		"read",
+		"-g",
+		"AppleInterfaceStyle",
+	})
+	:match("Dark") and "dark" or "light"
 
 local diagnostic_signs = {
 	[vim.diagnostic.severity.ERROR] = "E",
@@ -85,7 +93,7 @@ require("oil").setup({
 })
 require("toggleterm").setup({
 	open_mapping = "<leader>tt",
-    insert_mappings = false,
+	insert_mappings = false,
 	direction = "float",
 })
 require("mini.pick").setup()
@@ -100,8 +108,12 @@ require("gitsigns").setup({
 	on_attach = function(bufnr)
 		local gs = require("gitsigns")
 		local opts = { buffer = bufnr }
-		vim.keymap.set("n", "]c", function() gs.nav_hunk("next") end, opts)
-		vim.keymap.set("n", "[c", function() gs.nav_hunk("prev") end, opts)
+		vim.keymap.set("n", "]c", function()
+			gs.nav_hunk("next")
+		end, opts)
+		vim.keymap.set("n", "[c", function()
+			gs.nav_hunk("prev")
+		end, opts)
 		vim.keymap.set("n", "<leader>gb", gs.blame_line, opts)
 		vim.keymap.set("n", "<leader>gp", gs.preview_hunk, opts)
 		vim.keymap.set("n", "<leader>gs", gs.stage_hunk, opts)
@@ -109,10 +121,7 @@ require("gitsigns").setup({
 	end,
 })
 require("lazydev").setup()
-require("ts-error-translator").setup({
-	auto_attach = true,
-	servers = { "ts_ls", "vtsls", "typescript-tools" },
-})
+require("ts-error-translator").setup()
 require("which-key").setup()
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 local conform = require("conform")
@@ -226,7 +235,7 @@ vim.lsp.config("angularls", {
 		end
 
 		local package_json = vim.fs.find("package.json", { path = vim.fs.dirname(fname), upward = true })[1]
-		if package_json and file_contains(package_json, "\"@angular/core\"") then
+		if package_json and file_contains(package_json, '"@angular/core"') then
 			on_dir(vim.fs.dirname(package_json))
 		end
 	end,
@@ -323,13 +332,25 @@ vim.api.nvim_create_autocmd("FileType", {
 				"-Dlog.level=ALL",
 				"-Xmx1g",
 				"--add-modules=ALL-SYSTEM",
-				"--add-opens", "java.base/java.util=ALL-UNNAMED",
-				"--add-opens", "java.base/java.lang=ALL-UNNAMED",
-				"-jar", launcher,
-				"-configuration", config_dir,
-				"-data", workspace_dir,
+				"--add-opens",
+				"java.base/java.util=ALL-UNNAMED",
+				"--add-opens",
+				"java.base/java.lang=ALL-UNNAMED",
+				"-jar",
+				launcher,
+				"-configuration",
+				config_dir,
+				"-data",
+				workspace_dir,
 			},
-			root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", "build.gradle.kts" }),
+			root_dir = require("jdtls.setup").find_root({
+				".git",
+				"mvnw",
+				"gradlew",
+				"pom.xml",
+				"build.gradle",
+				"build.gradle.kts",
+			}),
 			settings = {
 				java = {
 					signatureHelp = { enabled = true },
@@ -355,9 +376,25 @@ vim.api.nvim_create_autocmd("FileType", {
 
 require("nvim-treesitter").setup({
 	ensure_installed = {
-		"elixir", "lua", "typescript", "javascript", "rust",
-		"swift", "ocaml", "go", "python", "java", "kotlin", "angular",
-		"json", "html", "css", "bash", "toml", "yaml", "markdown",
+		"elixir",
+		"lua",
+		"typescript",
+		"javascript",
+		"rust",
+		"swift",
+		"ocaml",
+		"go",
+		"python",
+		"java",
+		"kotlin",
+		"angular",
+		"json",
+		"html",
+		"css",
+		"bash",
+		"toml",
+		"yaml",
+		"markdown",
 	},
 	highlight = { enable = true },
 	textobjects = {
@@ -394,7 +431,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 require("solarized-osaka").setup({
-    transparent = true,
+	transparent = true,
 	styles = {
 		comments = { italic = false },
 		keywords = { italic = false },
@@ -453,7 +490,7 @@ require("github-theme").setup({
 })
 require("catppuccin").setup({
 	-- flavour = "frappe",
-    transparent_background = true,
+	transparent_background = true,
 	styles = {
 		comments = {},
 		conditionals = {},
@@ -461,7 +498,7 @@ require("catppuccin").setup({
 })
 require("bamboo").setup({
 	-- style = "multiplex",
-    transparent = true,
+	transparent = true,
 	code_style = {
 		comments = { italic = false },
 		conditionals = { italic = false },
@@ -474,11 +511,12 @@ require("bamboo").setup({
 	},
 })
 require("rose-pine").setup({
-    variant = "moon",
-    styles = {
-        italic = false,
-        transparency = true,
-    }
+	variant = "auto",
+	dark_variant = "moon",
+	styles = {
+		italic = false,
+		-- transparency = true,
+	},
 })
 
 local themes = {
@@ -564,8 +602,12 @@ vim.keymap.set("n", "<leader>st", function()
 		end
 	end)
 end)
-vim.keymap.set("n", "<leader>tn", function() cycle_theme(1) end)
-vim.keymap.set("n", "<leader>tp", function() cycle_theme(-1) end)
+vim.keymap.set("n", "<leader>tn", function()
+	cycle_theme(1)
+end)
+vim.keymap.set("n", "<leader>tp", function()
+	cycle_theme(-1)
+end)
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
 vim.keymap.set("n", "<leader>sq", function()
 	vim.diagnostic.setqflist({ open = true })

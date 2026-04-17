@@ -1,4 +1,7 @@
 font-family = "UbuntuMono Nerd Font Mono"
 font-size = 18
-theme = Rose Pine
+theme = light:Rose Pine Dawn,dark:Rose Pine Moon
 background-opacity = 0.8
+cursor-style = block
+shell-integration-features = no-cursor
+
