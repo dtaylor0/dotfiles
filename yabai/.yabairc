@@ -29,6 +29,9 @@ yabai -m config split_ratio 0.50
 
 # Unmanaged apps
 yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add title="^Settings$" manage=off
+yabai -m rule --add title="^Preferences$" manage=off
+yabai -m rule --add app="^System Information$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Karabiner" manage=off
 yabai -m rule --add app="^Archive Utility$" manage=off
@@ -54,7 +57,17 @@ yabai -m rule --add app="^Telegram$" manage=off
 yabai -m rule --add app="^iPhone Mirroring$" manage=off
 yabai -m rule --add app="^FindMy$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Hex$" manage=off
 # yabai -m rule --add app="^YouTube$" manage=off
+# yabai -m rule --add title="^Zed — Settings$" manage=off
+yabai -m rule --add title="^.*Settings.*$" manage=off
+
+# Common macOS file dialogs
+yabai -m rule --add title="^(Open|Save|Save As|Choose|Import|Export|Select files)$" manage=off
+# macOS sheets/dialogs (best bet for file pickers)
+yabai -m rule --add role="^AXSheet$" manage=off
+yabai -m rule --add subrole="^AXSystemDialog$" manage=off
+yabai -m rule --add role="^AXDialog$" manage=off
 
 # Fix Ghostty tabs: macOS native tabs appear as separate windows to yabai
 yabai -m signal --add app="^Ghostty$" event=window_created action="yabai -m space --layout bsp"

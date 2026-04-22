@@ -1,8 +1,8 @@
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.wrap = false
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+-- vim.o.tabstop = 4
+-- vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.signcolumn = "yes"
 vim.o.swapfile = false
@@ -18,6 +18,14 @@ vim.o.background = vim.fn
 		"AppleInterfaceStyle",
 	})
 	:match("Dark") and "dark" or "light"
+vim.opt.diffopt:append({
+  "internal",
+  "filler",
+  "closeoff",
+  "indent-heuristic",
+  "algorithm:histogram",
+  "inline:char",
+})
 
 local diagnostic_signs = {
 	[vim.diagnostic.severity.ERROR] = "E",
@@ -67,6 +75,7 @@ vim.pack.add({
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+	{ src = "https://github.com/tpope/vim-fugitive" },
 	{ src = "https://github.com/akinsho/toggleterm.nvim" },
 	{
 		src = "https://github.com/nvim-treesitter/nvim-treesitter",
@@ -105,20 +114,10 @@ require("mini.pairs").setup()
 require("mini.surround").setup()
 require("mini.statusline").setup()
 require("gitsigns").setup({
-	on_attach = function(bufnr)
-		local gs = require("gitsigns")
-		local opts = { buffer = bufnr }
-		vim.keymap.set("n", "]c", function()
-			gs.nav_hunk("next")
-		end, opts)
-		vim.keymap.set("n", "[c", function()
-			gs.nav_hunk("prev")
-		end, opts)
-		vim.keymap.set("n", "<leader>gb", gs.blame_line, opts)
-		vim.keymap.set("n", "<leader>gp", gs.preview_hunk, opts)
-		vim.keymap.set("n", "<leader>gs", gs.stage_hunk, opts)
-		vim.keymap.set("n", "<leader>gr", gs.reset_hunk, opts)
-	end,
+  signcolumn = true,
+  numhl = false,
+  linehl = true,
+  word_diff = false,
 })
 require("lazydev").setup()
 require("ts-error-translator").setup()
@@ -150,7 +149,8 @@ require("mason").setup()
 require("mason-lspconfig").setup({
 	ensure_installed = {
 		"lua_ls",
-		"ts_ls",
+		-- "ts_ls",
+		"vtsls",
 		"angularls",
 		"eslint",
 		"elixirls",
@@ -160,7 +160,11 @@ require("mason-lspconfig").setup({
 		"jdtls",
 		"kotlin_language_server",
 	},
+	automatic_enable = {
+		exclude = { "ts_ls" },
+	},
 })
+--[[
 vim.lsp.config("ts_ls", {
 	settings = {
 		typescript = {
@@ -205,6 +209,7 @@ vim.lsp.config("ts_ls", {
 		},
 	},
 })
+]]
 local function file_contains(path, needle)
 	local ok, lines = pcall(vim.fn.readfile, path)
 	if not ok then
@@ -267,17 +272,17 @@ vim.lsp.config("kotlin_language_server", {
 		},
 	},
 })
-vim.lsp.enable({
-	"lua_ls",
-	"ts_ls",
-	"angularls",
-	"eslint",
-	"elixirls",
-	"rust_analyzer",
-	"gopls",
-	"pyright",
-	"kotlin_language_server",
-})
+-- vim.lsp.enable({
+-- 	"lua_ls",
+-- 	-- "ts_ls",
+-- 	"angularls",
+-- 	"eslint",
+-- 	"elixirls",
+-- 	"rust_analyzer",
+-- 	"gopls",
+-- 	"pyright",
+-- 	"kotlin_language_server",
+-- })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 	border = "rounded",
@@ -614,13 +619,14 @@ vim.keymap.set("n", "<leader>sq", function()
 end)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
+vim.keymap.set("n", "gt", vim.lsp.buf.type_definition)
 vim.keymap.set("n", "gr", vim.lsp.buf.references)
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.get_prev)
+vim.keymap.set("n", "[d", vim.diagnostic.get_next)
 vim.keymap.set("n", "-", ":Oil<CR>")
 
 -- Split navigation
